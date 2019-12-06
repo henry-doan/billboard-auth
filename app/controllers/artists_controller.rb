@@ -16,8 +16,10 @@ class ArtistsController < ApplicationController
   def create
     @artist = @billboard.artists.new(artist_params)
     if @artist.save
+      flash[:success] = "Artist Created"
       redirect_to billboard_artists_path(@billboard)
     else
+      flash[:error] = "Error #{@artist.errors.full_messages.join("\n")}"
       render :new
     end
   end
@@ -27,14 +29,17 @@ class ArtistsController < ApplicationController
 
   def update
     if @artist.update(artist_params)
+      flash[:success] =  "Artist: #{@artist.name} Updated"
       redirect_to billboard_artists_path(@billboard)
     else
+      flash[:error] = "Error #{@artist.errors.full_messages.join("\n")}"
       render :edit
     end
   end
 
   def destroy
     @artist.destroy
+    flash[:success] =  "Artist: #{@artist.name} Deleted"
     redirect_to billboard_artists_path(@billboard)
   end
 

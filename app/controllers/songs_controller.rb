@@ -16,8 +16,10 @@ class SongsController < ApplicationController
   def create
     @song = @artist.songs.new(song_params)
     if @song.save
+      flash[:success] =  "Song: Created"
       redirect_to artist_songs_path(@artist)
     else
+      flash[:error] = "Error #{@song.errors.full_messages.join("\n")}"
       render :new
     end
   end
@@ -27,14 +29,17 @@ class SongsController < ApplicationController
 
   def update
     if @song.update(song_params)
+      flash[:success] =  "Song: #{@song.title} Updated"
       redirect_to artist_songs_path(@artist)
     else
+      flash[:error] = "Error #{@song.errors.full_messages.join("\n")}"
       render :edit
     end
   end
 
   def destroy
     @song.destroy
+    flash[:success] =  "Song: #{@song.title} Deleted"
     redirect_to artist_songs_path(@artist)
   end
 

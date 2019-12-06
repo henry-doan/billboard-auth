@@ -15,8 +15,10 @@ class BillboardsController < ApplicationController
   def create
     @billboard = current_user.billboards.new(billboard_params)
     if @billboard.save
+      flash[:success] = "Billboard Created"
       redirect_to billboards_path
     else
+      flash[:error] = "Error #{@billboard.errors.full_messages.join("\n")}"
       render :new
     end
   end
@@ -26,14 +28,17 @@ class BillboardsController < ApplicationController
 
   def update
     if @billboard.update(billboard_params)
+      flash[:success] =  "Billboard: #{@billboard.name} Updated"
       redirect_to billboards_path
     else
+      flash[:error] = "Error #{@billboard.errors.full_messages.join("\n")}"
       render :edit
     end
   end
 
   def destroy
     @billboard.destroy
+    flash[:success] =  "Billboard: #{@billboard.name} Deleted"
     redirect_to billboards_path
   end
 
