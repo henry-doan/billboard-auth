@@ -1,2 +1,5 @@
-<h1>Billboards#show</h1>
-<p>Find me in app/views/billboards/show.html.erb</p>
+<h1><%= @billboard.name %></h1>
+<%= link_to 'Artists', billboard_artists_path(@billboard) %>
+<br />
+<%= link_to 'Back', billboards_path %>
+
