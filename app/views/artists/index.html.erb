@@ -4,7 +4,11 @@
   <% @artists.each do |artist| %>
     <li>
       <%= link_to artist.name, [@billboard, artist] %>
+      <br />
+      <%= link_to 'Edit', edit_billboard_artist_path(@billboard, artist) %>
+      <%= button_to 'Delete', [@billboard, artist], method: :delete %>
     </li>
+    <br />
   <% end %>
 </ul>
 <br />
