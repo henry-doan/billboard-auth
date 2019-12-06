@@ -6,6 +6,10 @@
   <% @billboards.each do |billboard| %>
     <li>
       <%= link_to billboard.name, billboard %>
+      <br />
+      <%= link_to 'Edit', edit_billboard_path(billboard) %>
+      <%= button_to 'Delete', billboard, method: :delete %>
     </li>
+    <br />
   <% end %>
 </ul>
