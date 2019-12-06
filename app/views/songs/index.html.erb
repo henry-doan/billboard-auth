@@ -5,7 +5,11 @@
   <% @songs.each do |song| %>
     <li>
       <%= link_to song.title, [@artist, song] %>
+      <br />
+      <%= link_to 'Edit', edit_artist_song_path(@artist, song) %>
+      <%= button_to 'Delete', [@artist, song], method: :delete %>
     </li>
+    <br />
   <% end %>
 </ul>
 
